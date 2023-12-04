@@ -441,7 +441,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3452feff
+      m_ExpandedIDs: 1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -847,9 +847,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.112518, y: -0.2694801, z: -0.04124672}
+    m_Target: {x: -3.7898738, y: -3.6620717, z: 0.046616673}
     speed: 2
-    m_Value: {x: -1.0992472, y: -0.2694801, z: -0.03703542}
+    m_Value: {x: -3.6732373, y: -3.6662977, z: 0.04822591}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -899,9 +899,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.779493
+    m_Target: 3.7370236
     speed: 2
-    m_Value: 9.358367
+    m_Value: 3.5760992
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1085,14 +1085,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: 71
-  m_LastProjectPath: C:\School\Project play\Project-play\Project-Play
+  m_LastProjectPath: C:\Users\q2006\Documents\GitHub\Project-play
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 08060000
-    m_LastClickedID: 1544
-    m_ExpandedIDs: 000000000806000000ca9a3bffffff7f
+    m_SelectedIDs: 566e0000
+    m_LastClickedID: 28246
+    m_ExpandedIDs: 00000000566e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1120,7 +1120,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 00000000566e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
