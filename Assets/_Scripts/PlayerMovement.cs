@@ -47,15 +47,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateAnimationUpdate()
     {
-        MovementState State;
-
         if (yInput > 0f)
         {
-            State = MovementState.walkingUp;            
+            State = MovementState.walkingUp;
         }
         else if (yInput < 0f)
         {
-            State = MovementState.walkingDown;            
+            State = MovementState.walkingDown;
         }
         else
         {
@@ -73,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
         {
             State = MovementState.idle;
         }
-        
+
+        Debug.Log(State);
 
         anim.SetInteger("State", (int)State);
     }
