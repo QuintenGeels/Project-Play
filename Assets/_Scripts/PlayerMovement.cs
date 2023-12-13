@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             State = MovementState.idle;
         }
 
-        Debug.Log(State);
+        
 
         anim.SetInteger("State", (int)State);
     }
