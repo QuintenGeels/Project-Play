@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GrapObject : MonoBehaviour
+public class GrabObject : MonoBehaviour
 {
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
@@ -14,10 +15,44 @@ public class GrapObject : MonoBehaviour
     private bool facingRight = true;
     public float boxDistance = 0.6f;
 
+    private static GrabObject instance;
+
     void Start()
     {
         layerIndex = LayerMask.NameToLayer("Objects");
         popupText.gameObject.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        // Singleton pattern to ensure only one instance persists
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        // Subscribe to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe from the scene loaded event
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Perform setup or cleanup actions for the new scene
+        // For example, release grabbed object or update text
     }
 
     void Update()
@@ -29,7 +64,7 @@ public class GrapObject : MonoBehaviour
 
         if ((hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex) || grabbedObject)
         {
-            if (!grabbedObject && Vector2.Distance(transform.position, hitInfo.collider.gameObject.transform.position) < boxDistance) 
+            if (!grabbedObject && Vector2.Distance(transform.position, hitInfo.collider.gameObject.transform.position) < boxDistance)
             {
                 popupText.gameObject.SetActive(true);
             }

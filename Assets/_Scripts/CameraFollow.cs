@@ -3,9 +3,11 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public float FollowSpeed = 2f;
+    private bool isPaused = false;
     public Transform target;
     [SerializeField] private Transform PauseBackground;
     [SerializeField] private Transform Opacity;
+
 
     // Update is called once per frame
     void Update()
@@ -19,9 +21,18 @@ public class CameraFollow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("hello");
-            // Move the background position to the center of the camera
-            MoveBackgroundToCameraCenter();
+            if (isPaused)
+            {
+                PauseBackground.transform.position = new Vector3(20, 0, 0);
+                Opacity.transform.position = new Vector3(20, 0, 0);
+                isPaused = false;
+
+            }
+            else
+            {
+                MoveBackgroundToCameraCenter();
+                isPaused = true;
+            }
         }
     }
 
@@ -43,5 +54,6 @@ public class CameraFollow : MonoBehaviour
                 Debug.LogWarning("Main camera not found.");
             }
         }
+        
     }
 }
