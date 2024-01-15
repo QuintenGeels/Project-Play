@@ -1,6 +1,6 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GrabObject : MonoBehaviour
 {
@@ -51,12 +51,21 @@ public class GrabObject : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Perform setup or cleanup actions for the new scene
-        // For example, release grabbed object or update text
+        GameObject Box = GameObject.FindWithTag("Box");
+        UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+        int activeSceneIndex = activeScene.buildIndex;
+        // Release the grabbed object when the scene is loaded
+        if (Box != grabbedObject && activeSceneIndex != 2)
+        {
+            Destroy(Box);
+            
+        }
     }
 
     void Update()
     {
+        UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+        int activeSceneIndex = activeScene.buildIndex;
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -80,8 +89,10 @@ public class GrabObject : MonoBehaviour
                 grabbedObject.transform.position = grabPoint.position;
                 grabbedObject.transform.SetParent(transform);
                 popupText.gameObject.SetActive(false);
+                // Make the grabbed object "Don't Destroy On Load"
+                DontDestroyOnLoad(grabbedObject);
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.E) && activeSceneIndex != 3)
             {
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 grabbedObject.transform.SetParent(null);

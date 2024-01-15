@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Box
   - BruisWater
+  - Point
+  - Heart
+  - Liver
+  - Intestines
+  - Lungs
+  - Muscle
   layers:
   - Default
   - TransparentFX

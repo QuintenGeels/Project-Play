@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float yInput = 0f;
     public float xInput = 0f;
     private bool isPaused = false;
+    public int points = 0;
+    public int winCondition;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -16,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     private enum MovementState { idle, walkingUp, walkingDown, walkingLeft, walkingRight }
     private MovementState State = MovementState.idle;
+    HashSet<string> validTags = new HashSet<string> { "Liver", "Heart", "Intestines", "Muscles", "Lungs" };
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +36,42 @@ public class PlayerMovement : MonoBehaviour
         Move();
         UpdateAnimationUpdate();
         gamePause();
+        UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+        int activeSceneIndex = activeScene.buildIndex;
+        ToggleRenderer(activeSceneIndex != 0 && activeSceneIndex != 1 && activeSceneIndex != 3 && activeSceneIndex != 9 && activeSceneIndex != 10);
+        if (activeSceneIndex == 9 || activeSceneIndex == 10) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // Function to toggle the SpriteRenderer based on a condition
+    void ToggleRenderer(bool isVisible)
+    {
+        if (sprite != null)
+        {
+            // Set the visibility of the SpriteRenderer based on the condition
+            sprite.enabled = isVisible;
+        }
     }
 
     private void FixedUpdate()
     {
         
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Hit GameObject");
 
+        if (validTags.Contains(collision.gameObject.tag))
+        {
+            points++;
+            if (points >= winCondition)
+            {
+                SceneManager.LoadScene(10);
+            }
+        }
+    }
     void Move()
     {
         xInput = Input.GetAxis("Horizontal");
