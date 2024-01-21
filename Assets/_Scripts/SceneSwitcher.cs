@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.WSA;
+//using UnityEngine.WSA;
 
 public class SceneSwitcher : MonoBehaviour
 {
@@ -60,7 +60,7 @@ public class SceneSwitcher : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && quitButton)
         {
             // Quit the application
-            //Application.Quit();
+            Application.Quit();
             Debug.Log("Quited");
         }
     }      
